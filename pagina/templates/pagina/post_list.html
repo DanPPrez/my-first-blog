@@ -1,19 +1,16 @@
-<html>
+{% extends 'pagina/base.html' %}
 
-    <head>
-        <title>DanPPrez's blog</title>
-    </head>
+{% block content %}
 
-        <div>
-            <h1><a href="/">Dany's Blog</a></h1>
-        </div>
-        
-        {% for post in posts %}
-        <div>
-        	<p> publicado: {{ post.published_date }}</p>
-        	<h2><a href="">{{ post.title }}</a></h2>
-        	<p>{{ post.text|linebreaksbr }}</p>
-        </div>
-        {% endfor %}
+{% for post in posts %}
+<div class="post">
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.text|linebreaksbr }}</p>
+</div>
 
-</html>
+<div class="date">
+    <p>publicado: {{ post.published_date }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}
